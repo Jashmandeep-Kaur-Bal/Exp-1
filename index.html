@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+        }
+
+        form {
+            width: 320px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+        }
+
+        input:invalid {
+            border-color: red;
+        }
+
+        input:valid {
+            border-color: green;
+        }
+
+        .msg {
+            color: red;
+            font-size: 14px;
+        }
+
+        input:valid + .msg {
+            display: none;
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: black;
+            color: white;
+            border: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<form id="form">
+    <h2>Student Registration</h2>
+
+    <!-- Name -->
+    <label>Full Name:</label>
+    <input type="text" required pattern="[A-Za-z ]{9,50}">
+    <div class="msg">Must contain 9–50 letters</div>
+
+    <!-- Email -->
+    <label>Email:</label>
+    <input type="email" required>
+    <div class="msg">Valid email required</div>
+
+    <!-- Age -->
+    <label>Age:</label>
+    <input type="number" required min="16" max="30">
+    <div class="msg">Age 16–30 only</div>
+
+    <button type="submit">Register</button>
+
+    <div class="success" id="success">✔ Registration Successful</div>
+</form>
+
+<script>
+    const form = document.getElementById("form");
+    const success = document.getElementById("success");
+
+    form.onsubmit = function () {
+        if (form.checkValidity()) {
+            success.style.display = "block";
+            return false;
+        }
+    };
+</script>
+
+</body>
+</html>
